@@ -15,8 +15,7 @@ Para usar en navegador, agrege el archivo indicando version en su head de la pag
 
 En su archivo Javascript
 ```javascript
-//Inicie pasando la api key asignada
-let fp = new Xfxfp("123456789");
+let fp = new Xfxfp();
 await fp._init();
 ```
 <br/>

@@ -110,20 +110,20 @@ var Base64 = {
     },
     include : function(file) {
         let dd = document.getElementsByTagName('script');
-    dd = [].slice.call(dd)
-    let _l = dd.map((item)=>{ return item.getAttribute('src'); })
-        if(!_l.includes(file)){
-            var script  = document.createElement('script');
-            script.src  = file;
-            script.type = 'text/javascript';
-            script.defer = true;
-            let _title = document.getElementsByTagName('style')[0];
-            let _head = document.getElementsByTagName('head').item(0)
-            _head.insertBefore(script, _title);
-        }
+        dd = [].slice.call(dd)
+        let _l = dd.map((item)=>{ return item.getAttribute('src'); })
+            if(!_l.includes(file)){
+                var script  = document.createElement('script');
+                script.src  = file;
+                script.type = 'text/javascript';
+                script.defer = true;
+                let _title = document.getElementsByTagName('style')[0];
+                let _head = document.getElementsByTagName('head').item(0)
+                _head.insertBefore(script, _title);
+            }
             
     },
-    _setToken : async function(data, fk){
+    _setToken : async function(data){
         const header = {
             "alg": "HS256",
             "typ": "JWT",
@@ -133,7 +133,7 @@ var Base64 = {
     
         const encodedPlayload = Base64.encode(JSON.stringify({data:data}))
     
-        const signature = Base64.sha256crypt(`${encodedHeaders}.${encodedPlayload}`,fk);
+        const signature = Base64.sha256crypt(`${encodedHeaders}.${encodedPlayload}`,"xfxfp14624982brjs");
     
         const encodedSignature = Base64.encode(signature)
     
@@ -272,7 +272,7 @@ var Base64 = {
         },
         getFingerprint(){
             return new Promise(async (resolve, reject) => {
-                Base64._setToken(await this.getDeviceData(), this.key)
+                Base64._setToken(await this.getDeviceData())
                 .then((tk) => { 
                     resolve(tk); 
                 });

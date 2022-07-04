@@ -1,6 +1,6 @@
 {
   "name": "xfxfpbrowser",
-  "version": "1.4.0",
+  "version": "1.6.0",
   "description": "Generation of device fingerprint in the web browser",
   "main": "xfxFpBrowser.js",
   "scripts": {
